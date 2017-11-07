@@ -26,9 +26,12 @@ def choices():
 
 @app.route('/final', methods=['POST'])
 def final():
-    restaurant = ('input[name=yes]:checked)')
-    return render_template('final.html',restauraunt=restaurant)
-
+    restaurant = request.form.getlist('restaurant')
+    newList = list()
+    secondList = list()
+    for things in restaurant:
+        newList.append((DataFilter.getLink(str(things)),DataFilter.getLink(str(things))))
+    return render_template('final.html', restaurant=newList)
 
 
 
